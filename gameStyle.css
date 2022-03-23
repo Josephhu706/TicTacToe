@@ -1,0 +1,202 @@
+*{
+    box-sizing: border-box;
+    /* border: 2px solid green;  */
+}
+
+html {
+    background: url("./images/cairo.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+}
+
+.container{
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    max-width: 960px;
+    max-height: 960px;
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 150px);
+    grid-gap: 10px;
+    justify-content: center;
+
+}
+#maincontainer{
+    grid-template-columns: repeat(3, 1fr);
+}
+header{
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    background-size: cover;
+    text-align: center;
+    font-size: 150%;
+    padding: 0;
+    border-radius: 0.5em;
+    max-width: 960px;
+    margin: 0 auto;
+}
+/* music button */
+#musicbutton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+
+}
+h1{
+    margin: 0 auto;
+}
+h2{
+    margin: 0 auto;
+}
+#playernames{
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 50px 50px;
+    justify-content: center;
+}
+.character{
+    margin: 10px;
+}
+.box{
+    background-color: skyblue;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 200%;
+    height: 150px;
+}
+.box:hover {
+    background-color: yellow;
+  }
+#gridlines{
+    color: grey;
+    border-radius: 0.5em;
+    opacity: 0.6;
+}
+.X-turn{
+    background-image: url("./images/cross.svg");
+    background-size: cover;
+
+}
+.O-turn{
+    background-image: url("./images/circle.svg");
+    background-size: cover;
+}
+#buttons{
+    font-family: 'Press Start 2P', cursive;
+    margin: 0 auto;
+    padding: 0;
+    width: 920px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#player1turn{
+    width: 200px;
+    height: 40px;
+}
+#player2turn{
+    width: 200px;
+    height: 40px;
+}
+/* buttons */
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+/* buttons */
+
+
+#player1char{
+    border: 1px solid black;
+}
+#player2char{
+    border: 1px solid black;
+}
+.highlighted{
+    background-color: pink;
+}
+.icons{
+    display: grid;
+    justify-content:center;
+}
+.ready{
+    margin-top: 200px
+}
+
+#victorypopup{
+    background:url(./images/diovictory.gif);
+    background-repeat: no-repeat;
+    background-size:cover;
+    position: absolute;
+    height: 222px;
+    width: 383px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 100;
+    visibility:hidden;
+    
+}
+ 

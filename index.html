@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./gameStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="/Users/Jolly/Projects/02-html-css/exercises/js/jquery.js"></script>
+    <script src="./gameDOM.js"></script>
+    <script src="./logic.js"></script>
+    <title>TIC TAC TOE</title>
+</head>
+<body>
+
+    <header>
+      <audio src="./Sounds/JOJO's Bizarre Adventure Golden Wind O.S.T vol.1 Overture/01 il vento d’oro.mp3" id="music"></audio>
+      <button onclick="playPauseMusic()" id="musicbutton">Play Music</button>
+      <img src="./images/tictacjojo.svg" width="960" height="150">
+        <h2>Round</h2>
+        <div id="playernames">
+          <div id="playername1">player1</div>
+          <div id="roundcounter">1</div>
+          <div id="playername2">player2</div>
+          <div></div>
+          <div id="playerwins"></div>
+          <div></div>
+        </div>
+    </header>
+  <div class="container" id="maincontainer">
+    <img id="victorypopup">
+    <div id="player1char">
+        <div class="icons">
+          Choose your character
+          <div class= "character" id = "jotaro"><img src="./images/Jotaroicon.png" width="200" height="200"></div>
+          <div class= "character" id = "iggy"><img src="./images/iggyicon.png" width="200" height="200"></div>
+        </div>
+    </div>
+    <div class="container" id="gridlines">
+        <div class="box" id="box1"></div>
+        <div class="box" id="box2"></div>
+        <div class="box" id="box3"></div>
+        <div class="box" id="box4"></div>
+        <div class="box" id="box5"></div>
+        <div class="box" id="box6"></div>
+        <div class="box" id="box7"></div>
+        <div class="box" id="box8"></div>
+        <div class="box" id="box9"></div>
+    </div>
+
+    <div id="player2char">
+      <div class="icons">
+        Choose your character
+        <div class= "character" id = "dio"><img src="./images/dioicon.png" width="200" height="200"></div>
+        <div class= "character" id = "holhorse"><img src="./images/holhorseicon.png" width="200" height="200"></div>
+      </div>
+    </div>
+
+  </div>
+  <div class = "container" id="buttons">
+    <div class="footerelement" id="player1turn" ></div>
+    <button class="footerelement glow-on-hover" type="button" id = "reset">RESET</button>
+    <button class="footerelement glow-on-hover" id = "next-round">NEXT ROUND</button>
+    <div class="footerelement" id="player2turn" ></div>
+</div>
+</body>
+</html>
