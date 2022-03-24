@@ -1,14 +1,17 @@
+Play The Game At: https://josephhu706.github.io/TicTacToe/
+
 Technologies Used:
 
 HTML, CSS and Javascript, Jquery were used to piece together this game of Tic Tac Toe.
 
+
 Approach Taken
 
-Since i knew i didn't have too much time, i wanted to make something that i was passionate about to keep up motivation and something that might cover up some of the ...jankness of the project. I thought sprite based animation in a 2d fighting game style would work well. This would help mask the choppiness of some animations i wanted to include and cringe sounds i wanted to play and make it more fun.
+Since i knew i didn't have too much time, i wanted to make something that i was passionate about to keep up motivation and something that might cover up some of the ...jankness of the project. I thought sprite based animation in a 2d fighting game style would work well. This would help mask the choppiness of some animations i wanted to include and cringe sounds i wanted to play and make it more fun. My initial design was to have a character select option, a health bar, attack animations and a finisher screen. Also sound effects and music
 
 During the project
 
-As this was my first project, I was caught up in thinking too far ahead with where I wanted my project to go. Very often i would go down a rabbit hole and lose track ot the whole project. I would design my code a certain way and then when i would add to it, redundancies would pop up that i didn't forsee or bugs would occur for parts of my application that i didn't think would interact.
+As this was my first project, I was caught up in thinking too far ahead with where I wanted my project to go. Very often i would go down a rabbit hole and lose track ot the whole project. I would design my code a certain way and then when i would add to it, redundancies would pop up that i didn't forsee, or bugs would occur for parts of my application that i didn't think would interact.
 
 Making the best out of it
 
