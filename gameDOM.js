@@ -1,38 +1,30 @@
 
 const resetBoard = function(){
+    for(let i=1; i<=6; i++){
+        $(`#heart${[i]}`).show()
+    }
     $('#victorypopup').css({visibility:'hidden'})
-    $('.box').removeClass("O-turn X-turn highlighted")
+    $('.box').removeClass("JO-turn IO-turn DX-turn HX-turn highlighted")
     $('#roundcounter').html(`${playerMoves.roundCount}`)
     $('#playerwins').html("")
+    $("#choosechar1").show()
+    $("#choosechar2").show()
+    $('#box5').addClass('vs')
 
-    $('#jotaro img').removeAttr('src')
-    $('#jotaro img').show();
-    $('#jotaro img').attr({src: "./images/Jotaroicon.png"})
-    $('#jotaro').css('pointer-events','auto')
-    $('#jotaro img').removeClass('ready')
+    const characters =["jotaro", "dio", "iggy", "holhorse"]
 
-    $('#dio img').removeAttr('src')
-    $('#dio img').show();
-    $('#dio img').attr({src: "./images/dioicon.png"})
-    $('#dio').css('pointer-events','auto')
-    $('#dio img').removeClass('ready')
-
-    $('#iggy img').removeAttr('src')
-    $('#iggy img').show();
-    $('#iggy img').attr({src: "./images/iggyicon.png"})
-    $('#iggy').css('pointer-events','auto')
-    $('#iggy img').removeClass('ready')
-
-    $('#holhorse img').removeAttr('src')
-    $('#holhorse img').show();
-    $('#holhorse img').attr({src: "./images/holhorseicon.png"})
-    $('#holhorse ').css('pointer-events','auto')
-    $('#holhorse img').removeClass('ready')
-
+    for (let i=0; i<characters.length; i++){
+        $(`#${characters[i]} img`).removeAttr('src')
+        $(`#${characters[i]} img`).show();
+        $(`#${characters[i]} img`).attr({src: `./images/${characters[i]}icon.png`})
+        $(`#${characters[i]}`).css('pointer-events','auto')
+        $(`#${characters[i]} img`).removeClass('ready');
+    }
     resetPlayerMoves();
 }
+
 const nextRound = function(){
-    $('.box').removeClass("O-turn X-turn highlighted")
+    $('.box').removeClass("JO-turn IO-turn DX-turn HX-turn highlighted")
     resetPlayers();
     $('#playerwins').html("");
 }
@@ -51,9 +43,16 @@ const winnerMessage = function(winstatus, turn, round, character1, character2){
             highlightBoxes(winstatus)
             $('#playerwins').html("Player 1 Wins!!!!")
             $('#next-round').attr("disabled", false);
-            if (character1 == 'jotaro' && round == 3){
-                console.log('jotaro wins')
-                $('#victorypopup').css({visibility:'visible', background:"url('./images/jotarovictory.gif')"})
+            $(`#heart${playerMoves.player1wins+3}`).hide();
+            if (playerMoves.player1wins == 3 ){
+                if (character1 == 'jotaro'){
+                    console.log('jotaro wins')
+                    $('#victorypopup').css({visibility:'visible', background:"url('./images/jotarovictory.gif')"})
+                }
+                else if (character1 == 'iggy'){
+                    console.log('iggy wins')
+                    $('#victorypopup').css({visibility:'visible', background:"url('./images/iggyvictory.gif')"})
+                }
             }
         }
         else{
@@ -62,9 +61,16 @@ const winnerMessage = function(winstatus, turn, round, character1, character2){
             highlightBoxes(winstatus)
             $('#playerwins').html("Player 2 Wins!!!!")
             $('#next-round').attr("disabled", false);
-            if (character2 == 'dio' && round == 3){
-                console.log('dio wins')
-                $('#victorypopup').css({visibility:'visible', background:"url('./images/diovictory.gif')"})
+            $(`#heart${playerMoves.player2wins}`).hide();
+            if (playerMoves.player2wins == 3){
+                if (character2 == 'dio'){
+                    console.log('dio wins')
+                    $('#victorypopup').css({visibility:'visible', background:"url('./images/diovictory.gif')"})
+                }
+                else if (character2 == 'holhorse'){
+                    console.log('holhorse wins')
+                    $('#victorypopup').css({visibility:'visible', background:"url('./images/holhorsefinisher.gif')"})
+                }
             }
         }
     }
@@ -78,7 +84,7 @@ const winnerMessage = function(winstatus, turn, round, character1, character2){
 
 const animateJotaroPunch = function(){
     $(`#jotaro img`).attr({ src:'./images/jojouppercut.gif'})
-    setTimeout(function(){$('#jotaro img').attr({ src:'./images/jotaro.gif'})}, 800)
+    setTimeout(function(){$('#jotaro img').attr({ src:'./images/jotarostanding.gif'})}, 800)
 }
 
 const animateDioPunch = function(){
@@ -86,97 +92,97 @@ const animateDioPunch = function(){
     setTimeout(function(){$('#dio img').attr('src', "./images/diostanding.gif")}, 800)
 }
 
-let playmusic = false;
+const animateIggyPunch = function(){
+    $(`#iggy img`).attr('src', "./images/iggyattack.gif")
+    setTimeout(function(){$('#iggy img').attr('src', "./images/iggystanding.gif")}, 1500)
+}
 
-const playPauseMusic = function () {
-    if (playmusic == false){
-        document.getElementById("music").play();
-        document.getElementById("musicbutton").innerHTML="Pause Music"
-        playmusic = true;
-    }
-    else{
-        document.getElementById("music").pause();
-        document.getElementById("musicbutton").innerHTML="Play Music"
-        playmusic = false;
-
-    }
+const animateHolHorsePunch = function(){
+    $(`#holhorse img`).attr('src', "./images/holhorseattack.gif")
+    setTimeout(function(){$('#holhorse img').attr('src', "./images/holhorsestanding.gif")}, 1600)
 }
 
 $( document ).ready(function() {
-
+    $('#next-round').attr("disabled", true);
+    const heros =["jotaro", "iggy"];
+    const villains = ["dio","holhorse"];
     let character1;
     let character2;
-
+    $('#box5').addClass('vs')
     $('.box').css('pointer-events','none')
     $('#player1turn').html("It's player1's turn") 
     let turn = true;
     let selected1 = false;
     let selected2 = false;
 
+    const soundTrack = new Audio ("./Sounds/JOJO's Bizarre Adventure Golden Wind O.S.T vol.1 Overture/01 il vento d’oro.mp3")
+        soundTrack.volume = 0.2;
+    const announcer = new Audio("./Sounds/getready.m4a")
     const boxHover = new Audio("./Sounds/boxhover.mp3")
+    const jotaroAttack = new Audio("./Sounds/jotaroattacksound.mp3")
+    const dioAttack = new Audio("./Sounds/dioattacksound.m4a")
+    const iggyAttack = new Audio("./Sounds/iggyattacksound.mov")
+    const holhorseAttack = new Audio("./Sounds/holhorseattacksound.m4a")
 
+    let playmusic = false;
+
+    $('#musicbutton').on('click', function(event){
+        if (playmusic == false){
+            soundTrack.play();
+            $('#musicbutton').html("Pause Music")
+            playmusic = true;
+        }
+        else{
+            soundTrack.pause();
+            $('#musicbutton').html("Play Music")
+            playmusic = false;
+        }
+    })
 
     $(".box").mouseenter(function() {
-        // boxaudio.play();
         boxHover.play();
     });
 
-
     $('.character').on('click', function(event){
-        if (this.id == 'jotaro'){
-            character1 = 'jotaro'
-            $('#jotaro img').attr({ src:'./images/jotaro.gif'})
-            $('#jotaro img').addClass('ready')
-            $('#iggy img').hide();
-            $('#iggy').css('pointer-events','none')
-            $('#jotaro').css('pointer-events','none')
-            selected1 = true;
-            if (selected1==true && selected2==true){
-                $('.box').css('pointer-events','auto')
-                $('#next-round').attr("disabled", true);
+        if (heros.includes(this.id)){
+            for (let i=0; i<heros.length; i++){
+                if(this.id == heros[i]){
+                    character1=heros[i]
+                    $(`#${heros[i]}`).css('background-image', 'none')
+                    $(`#${heros[i]} img`).attr({ src:`./images/${heros[i]}standing.gif`})
+                    $(`#${heros[i]} img`).addClass(`ready`)
+                    $(`#${heros[i]}`).css('pointer-events','none')
+                    $("#choosechar1").hide()
+                    selected1 = true;
+                }
+                else{
+                    $(`#${heros[i]} img`).hide();
+                    $(`#${heros[i]}`).css('pointer-events','none')
+                }
             }
         }
-        if(this.id == 'dio'){
-            character2 = 'dio'
-            $('#dio').css('background-image', 'none')
-            $('#dio img').attr('src', './images/diostanding.gif')
-            $('#holhorse img').hide();
-            $('#dio img').addClass('ready')
-            $('#holhorse').css('pointer-events','none')
-            $('#dio').css('pointer-events','none')
-            selected2 = true
-            if (selected1==true && selected2==true){
-                $('.box').css('pointer-events','auto')
-                $('#next-round').attr("disabled", true);
+        if (villains.includes(this.id)){
+            for (let i=0; i<villains.length; i++){
+                if(this.id == villains[i]){
+                    character2=villains[i]
+                    $(`#${villains[i]}`).css('background-image', 'none')
+                    $(`#${villains[i]} img`).attr('src', `./images/${villains[i]}standing.gif`)
+                    $(`#${villains[i]}`).css('pointer-events','none')
+                    $(`#${villains[i]} img`).addClass('ready')
+                    $("#choosechar2").hide();
+                    selected2=true;
+                }
+                else{
+                    $(`#${villains[i]} img`).hide();
+                    $(`#${villains[i]}`).css('pointer-events','none')
+                }
             }
         }
-        if(this.id == 'iggy'){
-            character1 = 'iggy'
-            $('#iggy').css('background-image', 'none')
-            $('#iggy img').attr('src', './images/iggystanding.gif')
-            $('#jotaro img').hide();
-            $('#iggy').css('pointer-events','none')
-            $('#jotaro').css('pointer-events','none')
-            $('#iggy img').addClass('ready')
-            selected1 = true
-            if (selected1==true && selected2==true){
-                $('.box').css('pointer-events','auto')
-                $('#next-round').attr("disabled", true);
-            }
-        }
-        if(this.id == 'holhorse'){
-            character2 = 'holhorse'
-            $('#holhorse').css('background-image', 'none')
-            $('#holhorse img').attr('src', './images/holhorsestanding.gif')
-            $('#dio img').hide();
-            $('#holhorse').css('pointer-events','none')
-            $('#dio').css('pointer-events','none')
-            $('#holhorse img').addClass('ready')
-            selected2 = true
-            if (selected1==true && selected2==true){
-                $('.box').css('pointer-events','auto')
-                $('#next-round').attr("disabled", true);
-            }
+        if (selected1==true && selected2==true){
+            $('.box').css('pointer-events','auto')
+            $('#next-round').attr("disabled", true);
+            $('#box5').removeClass('vs')
+            announcer.play();
         }
     });
 
@@ -188,8 +194,16 @@ $( document ).ready(function() {
         if (turn == true){
             $('#player2turn').html("It's player 2's turn")
             $('#player1turn').html("")
-            $(`#${this.id}`).addClass('O-turn');
-            animateJotaroPunch();
+            if (character1 == 'jotaro'){
+                $(`#${this.id}`).addClass('JO-turn');
+                jotaroAttack.play();
+                animateJotaroPunch();
+            }
+            else if (character1 == 'iggy'){
+                $(`#${this.id}`).addClass('IO-turn');
+                iggyAttack.play();
+                animateIggyPunch();
+            }
             recordMoves(this.id, turn)
             let winstatus=checkWinPlayer(playerMoves.player1, playerMoves.player2)
             winnerMessage(winstatus, turn, playerMoves.roundCount, character1, character2)
@@ -198,8 +212,16 @@ $( document ).ready(function() {
         else{
             $('#player1turn').html("It's player 1's turn")
             $('#player2turn').html("")
-            $(`#${this.id}`).addClass('X-turn');
-            animateDioPunch();
+            if (character2 == 'dio'){
+                $(`#${this.id}`).addClass('DX-turn');
+                dioAttack.play();
+                animateDioPunch();
+            }
+            else if (character2 == 'holhorse'){
+                $(`#${this.id}`).addClass('HX-turn');
+                holhorseAttack.play();
+                animateHolHorsePunch();
+            }
             recordMoves(this.id, turn)
             let winstatus=checkWinPlayer(playerMoves.player1, playerMoves.player2)
             winnerMessage(winstatus, turn, playerMoves.roundCount, character1, character2)

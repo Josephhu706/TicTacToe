@@ -15,6 +15,8 @@ const playerMoves = {
     player1: [],
     player2: [],
     roundCount: 1,
+    player1wins: 0,
+    player2wins: 0
 };
 
 const recordMoves = function(move, boolean){
@@ -37,11 +39,11 @@ const checkWinPlayer = function (playerarray1, playerarray2){
        let win1 = winConditions[i].every(elem => playerarray1.includes(elem))
        let win2 = winConditions[i].every(elem => playerarray2.includes(elem))
        if (win1 == true){
-           winConditions[i]
+           playerMoves.player1wins+=1;
            return winConditions[i]
        }
        else if (win2 == true){
-           winConditions.player2winningmoves= winConditions[i]
+           playerMoves.player2wins+=1;
            return winConditions[i]
        }
        else if((playerarray1.length + playerarray2.length)/2 == 4.5 && winner == ''){
@@ -61,6 +63,8 @@ const resetPlayerMoves = function (){
     playerMoves.player1 = []
     playerMoves.player2 = []
     playerMoves.roundCount = 1;
+    playerMoves.player1wins = 0;
+    playerMoves.player2wins = 0;
 }
 
 const resetPlayers = function (){

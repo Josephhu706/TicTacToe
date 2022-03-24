@@ -14,26 +14,25 @@
 <body>
 
     <header>
-      <audio src="./Sounds/JOJO's Bizarre Adventure Golden Wind O.S.T vol.1 Overture/01 il vento d’oro.mp3" id="music"></audio>
-      <button onclick="playPauseMusic()" id="musicbutton">Play Music</button>
+      <button id="musicbutton">Play Music</button>
       <img src="./images/tictacjojo.svg" width="960" height="150">
         <h2>Round</h2>
         <div id="playernames">
           <div id="playername1">player1</div>
           <div id="roundcounter">1</div>
           <div id="playername2">player2</div>
-          <div></div>
+          <div id="player1health"><img class="heart" id= "heart1" src="./images/heart.png"><img class="heart" id= "heart2" src="./images/heart.png"><img class="heart" id= "heart3" src="./images/heart.png"></div>
           <div id="playerwins"></div>
-          <div></div>
+          <div id="player2health"><img class="heart" id= "heart4" src="./images/heart.png"><img class="heart" id= "heart5" src="./images/heart.png"><img class="heart" id= "heart6" src="./images/heart.png"></div>
         </div>
     </header>
   <div class="container" id="maincontainer">
     <img id="victorypopup">
     <div id="player1char">
         <div class="icons">
-          Choose your character
-          <div class= "character" id = "jotaro"><img src="./images/Jotaroicon.png" width="200" height="200"></div>
-          <div class= "character" id = "iggy"><img src="./images/iggyicon.png" width="200" height="200"></div>
+          <div class = "choosechar" id="choosechar1">Choose your character</div>
+          <div class= "character" id = "jotaro"><img class="icon" src="./images/jotaroicon.png" width="200" height="200"></div>
+          <div class= "character" id = "iggy"><img class="icon" src="./images/iggyicon.png" width="200" height="200"></div>
         </div>
     </div>
     <div class="container" id="gridlines">
@@ -50,9 +49,9 @@
 
     <div id="player2char">
       <div class="icons">
-        Choose your character
-        <div class= "character" id = "dio"><img src="./images/dioicon.png" width="200" height="200"></div>
-        <div class= "character" id = "holhorse"><img src="./images/holhorseicon.png" width="200" height="200"></div>
+       <div class = "choosechar" id="choosechar2">Choose your character</div> 
+        <div class= "character" id = "dio"><img class="icon" src="./images/dioicon.png" width="200" height="200"></div>
+        <div class= "character" id = "holhorse"><img class="icon" src="./images/holhorseicon.png" width="200" height="200"></div>
       </div>
     </div>
 
