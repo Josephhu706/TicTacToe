@@ -8,7 +8,6 @@ html {
     background-size: cover;
     height: 100%;
 }
-
 .container{
     font-family: 'Press Start 2P', cursive;
     color: white;
@@ -43,6 +42,7 @@ header{
     font-size: 16px;
 
 }
+/* heading tags */
 h1{
     margin: 0 auto;
 }
@@ -50,6 +50,7 @@ h2{
     padding-top: 20px;
     margin: 0 auto;
 }
+
 #roundcounter{
     padding-top: 20px;
 }
@@ -87,8 +88,8 @@ h2{
 }
 .box:hover {
     background-color: yellow;
-  }
-
+}
+/* button icons */
 .DX-turn{
     background-image: url("./images/diotoken.png");
     background-size: cover;
@@ -218,6 +219,7 @@ h2{
     z-index: 100;
     visibility:hidden;
 }
+/* shake animation for hearts and character selection text */
 .heart{
     display: inline;
     height:40px;
