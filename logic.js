@@ -46,12 +46,11 @@ const checkWinPlayer = function (playerarray1, playerarray2){
            playerMoves.player2wins+=1;
            return winConditions[i]
        }
-       else if((playerarray1.length + playerarray2.length)/2 == 4.5 && winner == ''){
-           console.log('hey!')
-           return 'draw'
-       }
     }
-    // console.log(winner);
+    if((playerarray1.length + playerarray2.length)/2 == 4.5){
+        console.log('hey!')
+        return 'draw'
+    }
 };
 
 
